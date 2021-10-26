@@ -1,24 +1,30 @@
 {
   "name": "proxyfi",
   "version": "1.0.0",
-  "description": "HTTP stiky load balancer using key-value storage",
+  "description": "HTTP sticky load balancer using key-value storage",
   "main": "dist/index.js",
   "scripts": {
-	"start": "cross-env NODE_ENV=dev ts-node ./server.ts",
-	"build": "tsc",
-	"test": "cross-env NODE_ENV=test ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json"
+    "start": "cross-env NODE_ENV=dev ts-node src/index.ts",
+    "build": "tsc",
+    "test": "cross-env NODE_ENV=test ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "repository": "https://github.com/pocketfi/proxyfi",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "http-proxy": "^1.18.1",
+    "mongoose": "^5.13.12"
+  },
   "devDependencies": {
-	"@types/jasmine": "^3.5.9",
-	"@types/node": "^13.9.2",
-	"cross-env": "^7.0.2",
-	"eslint": "^6.8.0",
-	"eslint-plugin-import": "^2.20.1",
-	"jasmine": "^3.5.0",
-	"ts-node": "^8.7.0",
-	"typescript": "^3.8.3"
+    "@types/http-proxy": "^1.17.7",
+    "@types/jasmine": "^3.5.9",
+    "@types/node": "^13.9.2",
+    "cross-env": "^7.0.2",
+    "eslint": "^8.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jasmine": "^3.5.0",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.9.10"
   }
 }
