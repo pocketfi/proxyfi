@@ -6,7 +6,7 @@ const userClusterSchema = new Schema({
 		required: true,
 		unique: true
 	},
-	url: {
+	clusterId: {
 		type: String,
 		required: true
 	}

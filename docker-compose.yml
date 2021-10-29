@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mongo
+    restart: on-failure
+    volumes:
+      - /var/lib/mongodb:/data/db
+    command: "--bind_ip_all --replSet rs0"
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: proxyfi
