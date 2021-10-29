@@ -23,6 +23,22 @@ export abstract class ProxyServer {
 	}
 
 	async handle(request: IncomingMessage, response: ServerResponse): Promise<void> {
+		console.log(request.method, request.url)
+		if (request.url === '/health') {
+			await this.handleHealthReport(request, response)
+		} else {
+			await this.handleProxy(request, response);
+		}
+	}
+
+	async handleHealthReport(request: IncomingMessage, response: ServerResponse): Promise<void> {
+		response.setHeader('Content-Type', 'application/json');
+		response.writeHead(200)
+		response.write(JSON.stringify(this.clusterStatuses))
+		response.end()
+	}
+
+	async handleProxy(request: IncomingMessage, response: ServerResponse): Promise<void> {
 		console.debug(request.headers)
 		const id = this.idProvider(request)
 		if (!id) {
@@ -52,7 +68,7 @@ export abstract class ProxyServer {
 		}
 	}
 
-	watchClusters() {
+	watchClusters(): void {
 		Cluster.watch().on('change', async change => {
 			console.debug(`cluster change: ${change}`)
 			if (change.operationType === 'insert') {
@@ -94,13 +110,13 @@ export abstract class ProxyServer {
 		console.debug('updated cluster status', this.clusterStatuses.map(cs => cs.cluster.id))
 	}
 
-	sendError(response: ServerResponse, code: number, message: string) {
+	sendError(response: ServerResponse, code: number, message: string): void {
 		response.writeHead(code)
 		response.write(message)
 		response.end()
 	};
 
-	proxyPass(request: IncomingMessage, response: ServerResponse, url: Server.ServerOptions) {
+	proxyPass(request: IncomingMessage, response: ServerResponse, url: Server.ServerOptions): void {
 		this.proxy.web(request, response, url, e => console.error(e));
 	}
 
