@@ -1,5 +1,5 @@
-import {ICluster} from "../document/Cluster";
-import {IHealth} from "../document/Health";
+import {ICluster} from "../document/Cluster"
+import {IHealth} from "../document/Health"
 
 export interface ClusterStatus {
 	cluster: ICluster

@@ -1,4 +1,4 @@
-import * as dotenv from "dotenv";
+import * as dotenv from "dotenv"
 
 dotenv.config()
 
@@ -8,7 +8,7 @@ export interface Config {
 	dbUrl: string
 	inTimeout: number
 	outTimeout: number
-	healthTimeout: number;
+	healthTimeout: number
 	healthPath: string
 }
 

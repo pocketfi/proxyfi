@@ -1,4 +1,4 @@
-import {ProxyServer} from "./ProxyServer";
+import {ProxyServer} from "./ProxyServer"
 
 export interface JobConfig {
 	job: (proxyServer: ProxyServer) => void
