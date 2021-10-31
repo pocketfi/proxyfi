@@ -7,7 +7,6 @@ import {Log} from "./service/Log"
 
 const log = new Log('index.ts')
 
-log.debug('connecting to db')
 mongoose.connect(config.dbUrl, {
 	useNewUrlParser: true,
 	connectWithNoPrimary: true,

@@ -18,8 +18,8 @@ export abstract class ProxyServer {
 	constructor(proxy: Server) {
 		this.proxy = proxy
 		this.scheduler = new Scheduler(this, ...jobConfigs)
-		setTimeout(() => {
-			this.updateClusterStatuses()
+		setTimeout(async () => {
+			await this.updateClusterStatuses()
 			this.watchClusters()
 		}, 0)
 	}

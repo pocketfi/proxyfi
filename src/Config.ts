@@ -1,6 +1,5 @@
 import * as dotenv from "dotenv"
-
-dotenv.config()
+import {Log} from "./service/Log";
 
 export interface Config {
 	port: string
@@ -12,6 +11,8 @@ export interface Config {
 	healthPath: string
 }
 
+dotenv.config()
+
 export const config: Config = {
 	port: process.env.PORT!,
 	idHeader: process.env.ID_HEADER!,
@@ -20,4 +21,10 @@ export const config: Config = {
 	outTimeout: parseInt(process.env.OUT_TIMEOUT!) || 1000,
 	healthTimeout: parseInt(process.env.HEALTH_TIMEOUT!) || 1000,
 	healthPath: '/health'
-}
+};
+
+(() => {
+	const log = new Log('Config.ts')
+	log.info('config initialized')
+	console.log(config)
+})()
